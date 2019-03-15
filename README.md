@@ -1,6 +1,29 @@
 # SoalShift_modul2_D10
 
-# Soal4
+# Soal 1
+Soal: Elen mempunyai pekerjaan pada studio sebagai fotografer. Suatu hari ada seorang klien yang bernama Kusuma yang meminta untuk mengubah nama file yang memiliki ekstensi .png menjadi “[namafile]_grey.png”. Karena jumlah file yang diberikan Kusuma tidak manusiawi, maka Elen meminta bantuan kalian untuk membuat suatu program C yang dapat mengubah nama secara otomatis dan diletakkan pada direktori /home/[user]/modul2/gambar.
+
+Solusi: 
+
+# Soal 2
+Soal: Pada suatu hari Kusuma dicampakkan oleh Elen karena Elen dimenangkan oleh orang lain. Semua kenangan tentang Elen berada pada file bernama “elen.ku” pada direktori “hatiku”. Karena sedih berkepanjangan, tugas kalian sebagai teman Kusuma adalah membantunya untuk menghapus semua kenangan tentang Elen dengan membuat program C yang bisa mendeteksi owner dan group dan menghapus file “elen.ku” setiap 3 detik dengan syarat ketika owner dan grupnya menjadi “www-data”. Ternyata kamu memiliki kendala karena permission pada file “elen.ku”. Jadi, ubahlah permissionnya menjadi 777. Setelah kenangan tentang Elen terhapus, maka Kusuma bisa move on.
+
+Solusi: 
+
+# Soal 3
+Soal: Diberikan file campur2.zip. Di dalam file tersebut terdapat folder “campur2”. 
+Buatlah program C yang dapat :
+i)  mengekstrak file zip tersebut.
+ii) menyimpan daftar file dari folder “campur2” yang memiliki ekstensi .txt ke dalam file daftar.txt. 
+Catatan:  
+Gunakan fork dan exec.
+Gunakan minimal 3 proses yang diakhiri dengan exec.
+Gunakan pipe
+Pastikan file daftar.txt dapat diakses dari text editor
+
+Solusi: 
+
+# Soal 4
 pada soal ini menjelaskan bahwa pada direktori /home/[user]/Documents/makanan terdapat file makan_enak.txt, kami diminta untuk membuat program C dimana program tersebut dapat mengetahui apakah file makan_enak.txt pernah diakses setidaknya 30 detik yang lalu. kalau makan_enak.txt pernah diakses setidaknya 30 detik yang lalu maka program harus dapat membuat file baru yaitu makan_sehat#.txt di direktori /home/[user]/Documents/makanan dengan '#' berisi bilangan bulat dari 1 sampai tak hingga.</br>
 penjelasan jawaban : </br>
 untuk menjawab soal ini kami memanfaatkan Daemon agar program bisa berjalan terus menerus.</br> 
@@ -93,7 +116,7 @@ har num[100];
 ```
 agar program selalu memeriksa setiap 5 detik maka kami menggunakan sleep(5);
 
-#soal5a
+# Soal 5a
 </br>pada soal ini kami diminta untuk membuat program C yang dapat mencatat log setiap menit daroi file log pada syslog ke direktori /home/[user]/log/[dd:MM:yyyy-hh:mm]/log#.log dengan ketentuan folder dibuat setiap 30 menit sekali dengan nama [dd:MM:yyyy-hh:mm] dan tiap menitnya memasukkan log#.log ke dalam folder tersebut dimana ‘#’ : increment per menit. Mulai dari 1</br>
 penjelasan jawaban : </br>
 pada soal ini kami menggunakan daemon agar program tetap berjalan terus menerus.</br>
@@ -166,7 +189,7 @@ setelah mendapatkan jumlah file maka program akan membuat file baru dan mengisin
     fclose(fb);
 ```
 
-#soal5b
+# Soal 5b
 pada soal ini kami diminta membuat program yang bisa menghentikan program soal5a.</br>
 kami menggunakan killall untuk menghentikan semua proses yang ada pada program soal5a</br>
 ```
