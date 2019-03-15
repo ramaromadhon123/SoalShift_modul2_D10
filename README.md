@@ -93,3 +93,87 @@ har num[100];
 ```
 agar program selalu memeriksa setiap 5 detik maka kami menggunakan sleep(5);
 
+#soal5a
+</br>pada soal ini kami diminta untuk membuat program C yang dapat mencatat log setiap menit daroi file log pada syslog ke direktori /home/[user]/log/[dd:MM:yyyy-hh:mm]/log#.log dengan ketentuan folder dibuat setiap 30 menit sekali dengan nama [dd:MM:yyyy-hh:mm] dan tiap menitnya memasukkan log#.log ke dalam folder tersebut dimana ‘#’ : increment per menit. Mulai dari 1</br>
+penjelasan jawaban : </br>
+pada soal ini kami menggunakan daemon agar program tetap berjalan terus menerus.</br>
+langkah pertama kami meng-extract waktu untuk pembuatan nama file</br>
+```
+time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+
+    jam = local->tm_hour;
+    mnt = local->tm_min;
+    dtk = local->tm_sec;
+    thn = local->tm_year + 1900;
+    bln = local->tm_mon + 1;
+    tgl = local->tm_mday;
+```
+</br>
+karena daemonnya kami jalankan tiap menit menggunakan sleep(60) maka kami membuat sebuah variable untuk menyimpan  data menit keberapa daemon sedang di jalankan, ketika variabel tersebut bernilai 30 maka variable tersebut akan di reset menjadi 0 dan akan melakukan pembuatan direktori dengan ketentuan yang ada pada soal</br>
+```
+if(wkt_fld == 30){
+      sprintf(nama_dir, "/home/ramrom/log/%02d:%02d:%d-%02d:%02d", tgl, bln, thn, jam, mnt);
+      wkt_fld = 0; 
+
+      pid_t child1;
+      child1 = fork();
+      
+      if(child1 == 0){
+        char *argv1[] = {"mkdir", nama_dir, NULL};
+        execv("/bin/mkdir", argv1);
+      }
+      while((wait(&status)) > 0);
+      
+    }
+```
+setelah itu program akan mengecek jumlah file yang ada didalam direktori tersebut yang nantinya akan digunakan untuk pembuatan file baru</br>
+
+```
+d = opendir(nama_dir);
+    
+    if(d){
+      while((dir = readdir(d)) != NULL){
+        if(dir->d_type == DT_REG){
+          ++bnyk_file;
+        }
+      }
+    }
+```
+
+setelah mendapatkan jumlah file maka program akan membuat file baru dan mengisinya dengan data log</br>
+```
+   char nama_file[100] ;
+    sprintf(nama_file, "%s/log%d.txt", nama_dir, bnyk_file + 1);
+
+    pid_t child2;
+    child2 = fork();
+    if(child2 == 0){
+      char *argv2[] = {"touch", nama_file, NULL};
+      execv("/usr/bin/touch", argv2);
+    }
+    while((wait(&status)) > 0);
+
+    fp = fopen("/var/log/syslog", "r");
+    fb = fopen(nama_file, "w");
+
+    while(fgets(str, sizeof(str), fp) !=NULL){
+      fprintf(fb,"%s",str);
+    }
+
+    fclose(fp);
+    fclose(fb);
+```
+
+#soal5b
+pada soal ini kami diminta membuat program yang bisa menghentikan program soal5a.</br>
+kami menggunakan killall untuk menghentikan semua proses yang ada pada program soal5a</br>
+```
+int main(){
+  char *argv[] = {"killall", "soal5a", NULL};
+  execv("/usr/bin/killall", argv);
+}
+```
+
+
