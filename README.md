@@ -1,17 +1,28 @@
 # SoalShift_modul2_D10
 
 # Soal 1
-Soal: Elen mempunyai pekerjaan pada studio sebagai fotografer. Suatu hari ada seorang klien yang bernama Kusuma yang meminta untuk mengubah nama file yang memiliki ekstensi .png menjadi “[namafile]_grey.png”. Karena jumlah file yang diberikan Kusuma tidak manusiawi, maka Elen meminta bantuan kalian untuk membuat suatu program C yang dapat mengubah nama secara otomatis dan diletakkan pada direktori /home/[user]/modul2/gambar.
+*Soal*: Elen mempunyai pekerjaan pada studio sebagai fotografer. Suatu hari ada seorang klien yang bernama Kusuma yang meminta untuk mengubah nama file yang memiliki ekstensi .png menjadi “[namafile]_grey.png”. Karena jumlah file yang diberikan Kusuma tidak manusiawi, maka Elen meminta bantuan kalian untuk membuat suatu program C yang dapat mengubah nama secara otomatis dan diletakkan pada direktori /home/[user]/modul2/gambar.
 
-Solusi: 
+*Solusi*: 
+1. Membuka direktori file dan menyimpan direktori tersebut.
+2. Lakukan loop dengan syarat:
+    - Cek semua file yang ada di direktori satu per satu.
+    - Cek apakah file berakhiran [.png]
+    - Masukkan nama file tersebut ke dalam nama direktori file /home/user/modul2/gambar/
+    - Hapus 4 karakter terakhir yaitu [.png] lalu ganti dengan [_grey.png]
+    - Rename file tersebut ke direktori dengan nama file yang baru.
 
 # Soal 2
-Soal: Pada suatu hari Kusuma dicampakkan oleh Elen karena Elen dimenangkan oleh orang lain. Semua kenangan tentang Elen berada pada file bernama “elen.ku” pada direktori “hatiku”. Karena sedih berkepanjangan, tugas kalian sebagai teman Kusuma adalah membantunya untuk menghapus semua kenangan tentang Elen dengan membuat program C yang bisa mendeteksi owner dan group dan menghapus file “elen.ku” setiap 3 detik dengan syarat ketika owner dan grupnya menjadi “www-data”. Ternyata kamu memiliki kendala karena permission pada file “elen.ku”. Jadi, ubahlah permissionnya menjadi 777. Setelah kenangan tentang Elen terhapus, maka Kusuma bisa move on.
+*Soal*: Pada suatu hari Kusuma dicampakkan oleh Elen karena Elen dimenangkan oleh orang lain. Semua kenangan tentang Elen berada pada file bernama “elen.ku” pada direktori “hatiku”. Karena sedih berkepanjangan, tugas kalian sebagai teman Kusuma adalah membantunya untuk menghapus semua kenangan tentang Elen dengan membuat program C yang bisa mendeteksi owner dan group dan menghapus file “elen.ku” setiap 3 detik dengan syarat ketika owner dan grupnya menjadi “www-data”. Ternyata kamu memiliki kendala karena permission pada file “elen.ku”. Jadi, ubahlah permissionnya menjadi 777. Setelah kenangan tentang Elen terhapus, maka Kusuma bisa move on.
 
-Solusi: 
+*Solusi*: 
+1. Deklarasi menggunakan _struct stat_ yang di dalamnya terdapat informasi mengenai owner dan group
+2. Masuk dan mengecek isi folder "hatiku" dan mengecek apakah ada "www-data"
+3. Jika ada, ubah permission menjadi 777 menggunakan chmod
+4. Remove file dan gunakan (sleep (3)) agar dapat dijalankan setiap 3 detik.
 
 # Soal 3
-Soal: Diberikan file campur2.zip. Di dalam file tersebut terdapat folder “campur2”. 
+*Soal*: Diberikan file campur2.zip. Di dalam file tersebut terdapat folder “campur2”. 
 Buatlah program C yang dapat :
 i)  mengekstrak file zip tersebut.
 ii) menyimpan daftar file dari folder “campur2” yang memiliki ekstensi .txt ke dalam file daftar.txt. 
@@ -21,7 +32,10 @@ Gunakan minimal 3 proses yang diakhiri dengan exec.
 Gunakan pipe
 Pastikan file daftar.txt dapat diakses dari text editor
 
-Solusi: 
+*Solusi*:
+1. Unzip file dengan menggunakan exec
+2. Gunakan fungsi pipe 
+3. Ada 4 child yang digunakan untuk menyelesaikan soal.
 
 # Soal 4
 pada soal ini menjelaskan bahwa pada direktori /home/[user]/Documents/makanan terdapat file makan_enak.txt, kami diminta untuk membuat program C dimana program tersebut dapat mengetahui apakah file makan_enak.txt pernah diakses setidaknya 30 detik yang lalu. kalau makan_enak.txt pernah diakses setidaknya 30 detik yang lalu maka program harus dapat membuat file baru yaitu makan_sehat#.txt di direktori /home/[user]/Documents/makanan dengan '#' berisi bilangan bulat dari 1 sampai tak hingga.</br>
